@@ -4,7 +4,7 @@
 
 <p align="center">
    <img src="https://img.shields.io/badge/Version-v1.0 (Alpha)-blue" alt="Version">
-   <img src="https://img.shields.io/badge/Licence-MIT-green" alt="Licence">
+   <img src="https://img.shields.io/badge/License-MIT-green" alt="License">
 </p>
 
 ## О проекте
