@@ -56,7 +56,7 @@ async def check_new_files():
                     else:
                         download_link = x['file']
                         file = cursor.execute(
-                            f"""SELECT id FROM yandex_files WHERE file_name = '{x["name"]}' AND user_id = {author_id}""").fetchone()
+                            f"""SELECT id FROM yandex_files WHERE file_name = '{x["name"]}' AND user_id = {author_id} AND folder_path = '{i[3]}'""").fetchone()
                         if file is None:
                             cursor.execute(
                                 f"""INSERT INTO yandex_files (folder_path, file_name, user_id) VALUES ('{i[3]}', '{x['name']}', {author_id})""")
@@ -67,7 +67,7 @@ async def check_new_files():
                             else:
                                 ref_username = cursor.execute(f"SELECT username FROM users WHERE user_id = {author_id}").fetchone()
                                 reffs_id = cursor.execute(f"SELECT user_id FROM users WHERE refferer_id = {author_id}").fetchall()
-                                await send_ref_mess(ref_username, reffs_id, download_link, x['name'])
+                                await send_ref_mess(ref_username, reffs_id, download_link, x['name'], cursor)
                         else:
                             pass
             await y.close()
