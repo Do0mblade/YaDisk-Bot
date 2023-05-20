@@ -3,7 +3,9 @@ from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeybo
 
 from defs.translation import _
 
-def choose_lang(ref=''):
+# этот файл содержит в себе все клавиатуры проекта
+
+def choose_lang(ref=''): # выбор языка
 
     langMenu = InlineKeyboardMarkup(row_width=2)
 
@@ -15,7 +17,7 @@ def choose_lang(ref=''):
 
     return langMenu
 
-def MainMenu(lang):
+def MainMenu(lang): # главное меню
     keyboard = ReplyKeyboardMarkup(resize_keyboard=True)
 
     btnProfile = KeyboardButton('👤 '+_('Профиль', lang))
@@ -24,7 +26,7 @@ def MainMenu(lang):
     keyboard.add(btnProfile, btnSettings)
     return keyboard
 
-def chooseStatus(status, lang):
+def chooseStatus(status, lang): # выбор статуса
 
     if status is None:
         statusMenu = InlineKeyboardMarkup(row_width=2)
@@ -45,7 +47,7 @@ def chooseStatus(status, lang):
 
         return DeleteProfileMenu
 
-def delete_account(lang):
+def delete_account(lang): # удалить аккаунт
     DelProfileMenu = InlineKeyboardMarkup()
 
     DelBtn = InlineKeyboardButton(text='✅ '+_('Да', lang), callback_data='delet_acc_yes')

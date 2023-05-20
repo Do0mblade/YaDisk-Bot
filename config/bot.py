@@ -1,3 +1,3 @@
 
 
-TOKEN = '<Your Bot Token>'
+TOKEN = '<Your Token Bot>' # Токен вашего бота

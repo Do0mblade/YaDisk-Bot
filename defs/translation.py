@@ -1,4 +1,5 @@
 
+# словарь с переводом фраз
 translation = {
     'en': {
         'Вы успешно зарегистрировались!': 'You have successfully registered!',
@@ -48,14 +49,14 @@ translation = {
         'Вот все ваши папки:\n\n<b><code>{}</code></b>\n\nУдалить их можно введя команду <code>/del_folder [папка]</code>': 'Here are all your folders:\n\n<b><code>{}</code></b>\n\n You can delete them by entering the command <code>/del_folder [folder]</code>',
         'Укажите ваш client_id!': 'Specify your client_id!',
         '<a href="https://oauth.yandex.ru/authorize?response_type=token&client_id={}">Перейдите по ссылке</a>': '<a href="https://oauth.yandex.ru/authorize?response_type=token&client_id={}">Follow the link</a>',
-        'Пользователь @{} добавил новый файл на свой Яндекс Диск.\nФайл: <a href="{}">{}</a>': 'User @{} added a new file to his Yandex Disk.\nFile: <a href="{}">{}</ a>'
+        'Пользователь @{} добавил новый файл на свой Яндекс Диск.\nФайл: <a href="{}">{}</a>': 'User @{} added a new file to his Yandex Disk.\nFile: <a href="{}">{}</a>'
     }
 }
 
-def _(text, lang='ru'):
-    if lang == 'ru':
+def _(text, lang='ru'): # функция для перевода
+    if lang == 'ru': # если русский язык, то возвращаем текст
         return text
-    else:
+    else: # иначе ищем текст в словаре и возвращаем его
         global translation
         try:
             return translation[lang][text]
