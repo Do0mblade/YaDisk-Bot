@@ -1,6 +1,4 @@
 
-import sys
-
 from config.bot import TOKEN # импортируем токен бота
 from .db import Database # импортируем бд
 from .translation import _ # импортируем языковой пакет
