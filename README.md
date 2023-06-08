@@ -29,6 +29,7 @@ TOKEN = '<Your Token Bot>' # Токен вашего бота
 ```python
 aiogram
 sqlite3
+yadisk_async
 ```
 
 ### Команды бота
