@@ -190,7 +190,7 @@ async def delete_folder(message: types.Message): # функция для выв�
     else:  # если пользователь не найден в бд, то просим зарегистрироваться
         await message.answer('📃 Пожалуйства введите команду /start')
 
-@dp.message_handler()
+@dp.message_handler(commands=['help'])
 async def help(message: types.Message): # help - инструкция для добавления папок ( доработать )
     if await db.user_exists(message.from_user.id): # проверка на регистрацию
         text = 'ℹ️ '+'Чтобы добавить папку для сканирования, вам необходимо ввести команду, как указано в примерах:\n<b>/add_folder /my_folder/</b>\n<b>/add_folder /Загрузки/my_folder1/my_folder2/\n/add_folder /Общий доступ/my_folder/</b>\n\nПо умолчанию бот ищет нужную вам папку во вкладке <b>"Файлы"</b>'
@@ -275,19 +275,6 @@ async def info_token(message: types.Message): # функция для получ
     else: # если пользователя нет в бд, просим зарегистрироваться
         await message.answer('📃 Пожалуйства введите команду /start')
 
-@dp.message_handler()
-async def redirection(message: types.Message): # переадресация
-    if await db.user_exists(message.from_user.id): # проверка на регистрацию
-        profile_ = ['👤 Профиль', '👤 профиль', 'Профиль', 'профиль', '👤 Profile', '👤 profile', 'Profile', 'profile']
-        settings_ = ['⚙️ Настройки', '⚙️ настройки', 'Настройки', 'настройки', '⚙️ Settings', '⚙️ settings', 'Settings', 'settings']
-        if message.text in profile_:
-            await user_profile(message)
-        if message.text in settings_:
-            await settings(message)
-    else: # если пользователя нет в бд, просим зарегистрироваться
-        await message.answer('📃 Пожалуйства введите команду /start')
-
-@dp.message_handler()
 async def settings(message: types.Message): # настройки языка
     if await db.user_exists(message.from_user.id): # проверка на регистрацию
         lang = (await db.get_lang(message.from_user.id))[0] # получаем язык
@@ -371,6 +358,17 @@ async def setLanguage(callback: types.CallbackQuery): # обрабатываем
             else: #  иначе отправляем сообщение
                 await bot.send_message(callback.from_user.id, '📥 '+_('Выбранный язык уже установлен!', lang), reply_markup=nav.MainMenu(lang)) # отправляем сообщение
 
+@dp.message_handler()
+async def redirection(message: types.Message): # переадресация
+    if await db.user_exists(message.from_user.id): # проверка на регистрацию
+        profile_ = ['👤 Профиль', '👤 профиль', 'Профиль', 'профиль', '👤 Profile', '👤 profile', 'Profile', 'profile']
+        settings_ = ['⚙️ Настройки', '⚙️ настройки', 'Настройки', 'настройки', '⚙️ Settings', '⚙️ settings', 'Settings', 'settings']
+        if message.text in profile_:
+            await user_profile(message)
+        if message.text in settings_:
+            await settings(message)
+    else: # если пользователя нет в бд, просим зарегистрироваться
+        await message.answer('📃 Пожалуйства введите команду /start')
 
 # запуск бота
 if __name__ == '__main__': # запуск проекта
