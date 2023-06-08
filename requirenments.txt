@@ -1,3 +1,0 @@
-aiogram
-sqlite3
-yadisk_async
